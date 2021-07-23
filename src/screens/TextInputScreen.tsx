@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { styles } from '../../android/app/src/theme/appTheme';
 import { CustomSwitch } from '../components/CustomSwitch';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { useForm } from '../hooks/useForm';
 
 
@@ -15,6 +16,7 @@ export const TextInputScreen = () => {
         phone: '',
         isSubscribed: false
     });
+    const {theme: {colors}} = useContext(ThemeContext);
 
     return (
         <KeyboardAvoidingView
@@ -26,29 +28,47 @@ export const TextInputScreen = () => {
                         <HeaderTitle title="Text Input"/>
 
                         <TextInput
-                            style={stylesLocal.input}
+                            style={{
+                                ...stylesLocal.input, 
+                               borderColor: colors.text,
+                               color: colors.text,
+                               backgroundColor: colors.card
+                            }}
                             placeholder={"Nombre"}
                             autoCapitalize='words'
                             onChangeText={(value) => onChange(value, 'name')}
+                            placeholderTextColor={colors.text}
                         />
 
                         <TextInput
-                            style={stylesLocal.input}
+                            style={{
+                                ...stylesLocal.input, 
+                               borderColor: colors.text,
+                               color: colors.text,
+                               backgroundColor: colors.card
+                            }}
                             placeholder={"Email"}
                             autoCorrect={false}
                             onChangeText={(value) => onChange(value, 'email')}
                             keyboardType="email-address"
+                            placeholderTextColor={colors.text}
                         />
 
                         <TextInput
-                            style={stylesLocal.input}
+                            style={{
+                                ...stylesLocal.input, 
+                               borderColor: colors.text,
+                               color: colors.text,
+                               backgroundColor: colors.card
+                            }}
                             placeholder={"Telefono"}
                             onChangeText={(value) => onChange(value, 'phone')}
                             keyboardType="numeric"
+                            placeholderTextColor={colors.text}
                         />
 
                         <View style={stylesLocal.container}>
-                            <Text style={stylesLocal.switchText}>Supscribirme</Text>
+                            <Text style={{...stylesLocal.switchText, color: colors.text}}>Supscribirme</Text>
                             <CustomSwitch isOn={isSubscribed} onChange={(value) => onChange(value, 'isSubscribed')}/> 
                         </View>
 

@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { onChange } from 'react-native-reanimated';
 import { CustomSwitch } from '../components/CustomSwitch';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const SwitchScreen = () => {
 
@@ -11,6 +12,7 @@ export const SwitchScreen = () => {
         isHungry: false,
         isHappy: true
     });
+    const {theme: {colors}} = useContext(ThemeContext);
 
     const onChange = (value: boolean, field: string) => {
         setstate({
@@ -22,30 +24,26 @@ export const SwitchScreen = () => {
 
     return (
         <View style={{marginTop: 0}}>
-
             <HeaderTitle title='Switchs'/>
 
             <View style={styles.container}>
-                <Text style={styles.switchText}>Is Active</Text>
+                <Text style={{...styles.switchText, color: colors.text}}>Is Active</Text>
                 <CustomSwitch isOn={state.isActive} onChange={(value) => onChange(value, 'isActive')}/> 
             </View>
 
             <View style={styles.container}>
-                <Text style={styles.switchText}>Is Hungry</Text>
+                <Text style={{...styles.switchText, color: colors.text}}>Is Hungry</Text>
                 <CustomSwitch isOn={state.isHungry} onChange={(value) => onChange(value, 'isHungry')}/> 
             </View>
 
             <View style={styles.container}>
-                <Text style={styles.switchText}>Is Happy</Text>
+                <Text style={{...styles.switchText, color: colors.text}}>Is Happy</Text>
                 <CustomSwitch isOn={state.isHappy} onChange={(value) => onChange(value, 'isHappy')}/> 
             </View>
 
-            
-
-            <Text style={styles.switchText}>
+            <Text style={{...styles.switchText, color: colors.text}}>
                 {JSON.stringify(state, null, 5)}
             </Text>
-            
         </View>
     )
 }

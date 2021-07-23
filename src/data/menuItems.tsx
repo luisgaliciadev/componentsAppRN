@@ -43,5 +43,15 @@ export const menuItems = [
         name: 'Infinite Scroll',
         icon: 'arrow-down-circle-outline',
         component: 'InfiniteScroll'
+    },
+    {
+        name: 'Slide Screen',
+        icon: 'film-outline',
+        component: 'SlideScreen'
+    },
+    {
+        name: 'Theme Screen',
+        icon: 'contrast-outline',
+        component: 'ThemeScreen'
     }
 ];
